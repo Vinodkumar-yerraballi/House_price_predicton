@@ -11,7 +11,7 @@ simplefilter(action='ignore', category=FutureWarning)
 
 
 
-model=pickle.load(open('House_price.sav','rb'))
+model=pickle.load(open('House_price_prediction.sav','rb'))
 
 def input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden):
     pred=np.array([[Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden]])

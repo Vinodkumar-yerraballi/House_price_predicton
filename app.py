@@ -17,7 +17,9 @@ data=pd.read_csv('HousePrices_HalfMil.csv')
 data.rename(columns={'White Marble':'white_marble','Black Marble':'black_marble',
        'Indian Marble':'indian_marble','Glass Doors':'glass_door', 'Swiming Pool':'swiming_pool'},inplace=True)
 
-X=data.drop(['Prices'],axis=1)
+X=data([['Area', 'Garage', 'FirePlace', 'Baths', 'White Marble', 'Black Marble',
+       'Indian Marble', 'Floors', 'City', 'Solar', 'Electric', 'Fiber',
+       'Glass Doors', 'Swiming Pool', 'Garden']])
 y=data['Prices']
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25,random_state=42)
 

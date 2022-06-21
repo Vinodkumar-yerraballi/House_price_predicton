@@ -10,36 +10,19 @@ from sympy import im
 from warnings import simplefilter
 simplefilter(action='ignore', category=FutureWarning)
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
 
 data=pd.read_csv('HousePrices_HalfMil.csv')
 data.rename(columns={'White Marble':'white_marble','Black Marble':'black_marble',
        'Indian Marble':'indian_marble','Glass Doors':'glass_door', 'Swiming Pool':'swiming_pool'},inplace=True)
-
-X=data[['Area', 'Garage', 'FirePlace', 'Baths', 'white_marble','black_marble','indian_marble', 'Floors', 'City', 'Solar', 'Electric', 'Fiber',
-       'glass_door', 'swiming_pool', 'Garden']]
+X=data.drop(['Prices'],axis=1)
 y=data['Prices']
-
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25)
 model=LinearRegression()
-model.fit(X,y)
+model.fit(X_train,y_train)
 
 
-
-with open("House_price.sav",'wb') as file:
-    pickle.dump(model,file)
-
-
-
-
-
-
-model=pickle.load(open('House_price_prediction.sav','rb'))
-
-def input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden):
-    pred=np.array([[Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden]])
-    prediction=model.predict(pred)
-    print(prediction)
-    return prediction
 
 image=Image.open('istockphoto.jpg')
 
@@ -74,10 +57,10 @@ def main():
     swiming_pool=st.selectbox("Enter swiming_pool ",["1","0"])
     Garden=st.selectbox("Enter Garden ",["1","0"])
     
-    result= " "
+    
     
     if st.button("Predict"):
-        result=input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden)
+        result=model.predict([Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden])
     
     st.success('The house price is{}'.format(result[0],2))
 

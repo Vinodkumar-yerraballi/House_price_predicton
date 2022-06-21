@@ -55,6 +55,7 @@ def main():
     
     if st.button("Predict"):
         result=input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden)
+        result=np.array(result)
     st.success(" The house price is{}".format(result[0],2))
 
 

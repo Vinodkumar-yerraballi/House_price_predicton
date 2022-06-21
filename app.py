@@ -6,6 +6,7 @@ import sklearn
 import pickle
 from PIL import Image
 from sympy import im
+from sklearn.utils import check_array
 
 
 
@@ -13,8 +14,11 @@ model=pickle.load(open('House_price.sav','rb'))
 
 def input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden):
     prediction=model.predict([[Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden]])
+    prediction=np.array([prediction])
+    check_array(prediction, dtype='numeric')
     print(prediction)
     return prediction
+    
 
 image=Image.open('istockphoto.jpg')
 

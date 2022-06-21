@@ -14,8 +14,8 @@ simplefilter(action='ignore', category=FutureWarning)
 model=pickle.load(open('House_price.sav','rb'))
 
 def input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden):
-    prediction=model.predict([[Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden]])
-    prediction=np.array([prediction])
+    pred=np.array([[Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden]])
+    prediction=model.predict(pred)
     print(prediction)
     return prediction
 
@@ -56,7 +56,7 @@ def main():
     
     if st.button("Predict"):
         result=input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden)
-        result=np.array(result)
+    
     st.success('The house price is{}'.format(result[0],2))
 
      

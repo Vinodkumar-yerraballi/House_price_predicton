@@ -9,7 +9,6 @@ from PIL import Image
 from sympy import im
 from warnings import simplefilter
 simplefilter(action='ignore', category=FutureWarning)
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 
@@ -20,10 +19,9 @@ data.rename(columns={'White Marble':'white_marble','Black Marble':'black_marble'
 X=data[['Area', 'Garage', 'FirePlace', 'Baths', 'white_marble','black_marble','indian_marble', 'Floors', 'City', 'Solar', 'Electric', 'Fiber',
        'glass_door', 'swiming_pool', 'Garden']]
 y=data['Prices']
-X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25,random_state=42)
 
 model=LinearRegression()
-model.fit(X_train,y_train)
+model.fit(X,y)
 
 
 

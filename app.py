@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 
-data=pd.read_csv('/home/vinod/Downloads/HousePrices_HalfMil.csv')
+data=pd.read_csv('HousePrices_HalfMil.csv')
 data.rename(columns={'White Marble':'white_marble','Black Marble':'black_marble',
        'Indian Marble':'indian_marble','Glass Doors':'glass_door', 'Swiming Pool':'swiming_pool'},inplace=True)
 

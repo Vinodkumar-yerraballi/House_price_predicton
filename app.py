@@ -1,5 +1,4 @@
 from matplotlib import image
-from sklearn.model_selection import train_test_split
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -10,7 +9,6 @@ from sympy import im
 from warnings import simplefilter
 simplefilter(action='ignore', category=FutureWarning)
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
 
 
 data=pd.read_csv('HousePrices_HalfMil.csv')
@@ -18,9 +16,8 @@ data.rename(columns={'White Marble':'white_marble','Black Marble':'black_marble'
        'Indian Marble':'indian_marble','Glass Doors':'glass_door', 'Swiming Pool':'swiming_pool'},inplace=True)
 X=data.drop(['Prices'],axis=1)
 y=data['Prices']
-X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25)
 model=LinearRegression()
-model.fit(X_train,y_train)
+model.fit(X,y)
 
 
 

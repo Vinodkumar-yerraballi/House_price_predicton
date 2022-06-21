@@ -6,6 +6,8 @@ import sklearn
 import pickle
 from PIL import Image
 from sympy import im
+from warnings import simplefilter
+simplefilter(action='ignore', category=FutureWarning)
 
 
 
@@ -16,7 +18,6 @@ def input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_
     prediction=np.array([prediction])
     print(prediction)
     return prediction
-    
 
 image=Image.open('istockphoto.jpg')
 
@@ -56,8 +57,7 @@ def main():
     if st.button("Predict"):
         result=input_features(Area,Garage,FirePlace,Baths,white_marble,black_marble,indian_marble,Floors,City,Solar,Electric,Fiber,glass_door,swiming_pool,Garden)
         result=np.array(result)
-    st.success(" The house price is{}".format(result[0],2))
-
+    st.success('The house price is{}'.format(result[0],2))
 
      
     

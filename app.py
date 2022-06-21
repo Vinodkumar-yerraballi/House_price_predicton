@@ -14,7 +14,7 @@ from sklearn.linear_model import LinearRegression
 data=pd.read_csv('HousePrices_HalfMil.csv')
 data.rename(columns={'White Marble':'white_marble','Black Marble':'black_marble',
        'Indian Marble':'indian_marble','Glass Doors':'glass_door', 'Swiming Pool':'swiming_pool'},inplace=True)
-X=data.drop(['Prices'],axis=1)
+X=data.drop(['Prices'],axis=1).values
 y=data['Prices']
 model=LinearRegression()
 model.fit(X,y)

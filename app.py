@@ -17,16 +17,14 @@ data=pd.read_csv('HousePrices_HalfMil.csv')
 data.rename(columns={'White Marble':'white_marble','Black Marble':'black_marble',
        'Indian Marble':'indian_marble','Glass Doors':'glass_door', 'Swiming Pool':'swiming_pool'},inplace=True)
 
-X=data([['Area', 'Garage', 'FirePlace', 'Baths', 'White Marble', 'Black Marble',
-       'Indian Marble', 'Floors', 'City', 'Solar', 'Electric', 'Fiber',
-       'Glass Doors', 'Swiming Pool', 'Garden']])
+X=data[['Area', 'Garage', 'FirePlace', 'Baths', 'white_marble','black_marble','indian_marble', 'Floors', 'City', 'Solar', 'Electric', 'Fiber',
+       'glass_door', 'swiming_pool', 'Garden']]
 y=data['Prices']
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25,random_state=42)
 
 model=LinearRegression()
 model.fit(X_train,y_train)
-prediction=model.predict(X_test)
-prediction
+
 
 
 with open("House_price.sav",'wb') as file:

@@ -56,6 +56,7 @@ def main():
     glass_door=st.selectbox("Enter glass_door ",["1","0"])
     swiming_pool=st.selectbox("Enter swiming_pool ",["1","0"])
     Garden=st.selectbox("Enter Garden ",["1","0"])
+    result=' '
     
     
     

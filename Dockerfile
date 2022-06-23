@@ -11,15 +11,19 @@ ENV PYTHONUNBUFFERED=1 \
 # we probably need build tools?
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
+    build-essential \
     gcc \
     g++ \
-    build-essential \
-    python3-dev
+    python3-dev \
+    curl \
+    wget \
+    git
 
 WORKDIR /app
 COPY requirements.txt requirements.txt
 
 # if we have a packages.txt, install it
+# but packages.txt must have only LF endings
 # COPY packages.txt packages.txt
 # RUN xargs -a packages.txt apt-get install --yes
 
@@ -29,10 +33,10 @@ EXPOSE 8501
 
 COPY . .
 
-CMD ["streamlit", "run", "streamlt_app.py"]
+CMD ["streamlit", "run", "app.py"]
 
-# docker build --progress=plain --tag houseprice:latest .
-# docker run -ti -p 8501:8501 --rm houseprice:latest /bin/bash
-# docker run -ti -p 8501:8501 --rm houseprice:latest
-# docker run -ti -p 8501:8501 -v ${pwd}:/app --rm houseprice:latest
-# docker run -ti -p 8501:8501 -v ${pwd}:/app --rm houseprice:latest /bin/bash
+# docker build --progress=plain --tag housepricing:latest .
+# docker run -ti -p 8501:8501 --rm housepricing:latest /bin/bash
+# docker run -ti -p 8501:8501 --rm housepricing:latest
+# docker run -ti -p 8501:8501 -v ${pwd}:/app --rm housepricing:latest
+# docker run -ti -p 8501:8501 -v ${pwd}:/app --rm housepricing:latest /bin/bash

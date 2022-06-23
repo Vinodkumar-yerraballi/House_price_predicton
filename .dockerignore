@@ -37,4 +37,3 @@ LICENSE
 .git/
 .gitignore
 .gitattributes
-.streamlit/secrets.toml
